@@ -17,6 +17,9 @@ const fetchResponse = async ({ body }) => {
         },
         body: JSON.stringify(body),
     });
+    if(!response.ok){
+        throw new Error(" Failed to connect ")
+    }
     const data = await response.json();
     return data?.choices?.[0]?.message?.content || "No response";
 };
